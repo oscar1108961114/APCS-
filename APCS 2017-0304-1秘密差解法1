@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class o03
+{
+	 public static void main(String...args)
+	 {   
+		 int a=0;
+		 int b=0;
+		 Scanner d = new Scanner(System.in);
+		 String e = d.next();
+		 for(int i=0;i<e.length();i++)
+		 {
+			 int data = e.charAt(i) - '0';//用法1
+			 //用法2:int data = Character.getNumericValue(e.charAt(i));
+			 //用法3int data = Integer.parseInt(String.valueOf(e.charAt(i)));
+			 //用法4:int data = Integer.parseInt(e.substring(i, i+1));
+			 if((i+1)%2==0)
+			  {
+				  
+				  a+=data;
+			  }
+			  else
+			  {
+				b+=data;
+			  }
+		 }
+		 System.out.println(Math.abs(a-b));
+		 d.close();
+		
+	 }
+}
