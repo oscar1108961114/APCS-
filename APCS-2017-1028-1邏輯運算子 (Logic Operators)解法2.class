@@ -1,0 +1,34 @@
+import java.util.Scanner;
+public class o0004
+{
+	public static void main(String[] args)
+	{
+		 Scanner data = new Scanner(System.in);
+		 int a = data.nextInt();
+		 int b = data.nextInt();
+		 int c = data.nextInt();
+		 boolean found = false;
+		 int A = a!=0 ? 1:0;
+		 int B = b!=0 ? 1:0;
+		 if((A&B)==c)
+		 {
+		   System.out.println("AND");
+		   found = true;
+		 }
+		 if((A|B)==c)
+		 {
+			System.out.println("OR");
+			found = true;
+		 }
+		 if((A^B)==c)
+		 {
+			System.out.println("XOR");
+			found = true;
+		 }
+		 if(!found)
+		 {
+		   System.out.println("IMPOSSIBLE");
+		 }
+		 data.close();
+	}
+}
