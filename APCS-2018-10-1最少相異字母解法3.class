@@ -1,0 +1,49 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class o0005
+{   
+	public static int a(String str)
+	{
+	   boolean letter[] = new boolean[26];
+	   int count = 0;
+	   for(int i=0;i<str.length();i++)
+	   {
+		  char c = str.charAt(i);
+		  int d = c-'A';
+		  if(!letter[d])
+		  {
+		    letter[d] = true;
+		    count++;
+		  }
+	   }
+	   return count;
+	}
+	public static void main(String[] args)
+	{
+	   try(InputStreamReader cin = new InputStreamReader(System.in);
+		   BufferedReader br = new BufferedReader(cin))
+	   {
+		  int row = Integer.parseInt(br.readLine());
+		  int mincount = Integer.MAX_VALUE;
+		  String result = "";
+		  for(int i=0;i<row;i++)
+		  {
+		     String data = br.readLine();
+		     int count1  = a(data);
+		     if(count1<mincount ||
+		    	(count1== mincount&& data.compareTo(result) < 0))
+		     {
+		       mincount = count1;
+		       result = data;
+		     }
+		  }
+		  System.out.println(result);
+	   }
+	   catch (Exception e)
+	   {
+		 e.printStackTrace();
+	   }
+
+	}
+
+}
