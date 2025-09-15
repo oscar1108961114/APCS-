@@ -1,0 +1,43 @@
+import java.util.Scanner;
+public class o05
+{   
+	public static int a(String str)
+	{
+	   boolean letter[] = new boolean[26];
+	   int count = 0;
+	   for(int i=0;i<str.length();i++)
+	   {
+		  char c  = str.charAt(i);//讀取索引i的字元
+		  int d = c-'A';//字元轉大寫字母
+		  if(!letter[d])
+		  {
+			 letter[d] = true;//標記為已見過
+			 count++;
+		  }		   
+	   }
+	   return count;
+	}
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		int row = cin.nextInt();
+		cin.nextLine();
+		String result = "";
+		int mincount = Integer.MAX_VALUE;
+	    for(int i=0;i<row;i++)
+	    {
+	       String data = cin.nextLine();
+	       int count1  = a(data);//將字串轉為一個個字元再轉為大寫母
+	       if(count1 < mincount ||
+	          count1==mincount&&data.compareTo(result) < 0)
+	       //1.主要條件：相異字母數更少
+	       //2.次要條件：相異字母數相同時，比較字典序
+	       {
+	    	 mincount = count1;
+	    	 result = data;
+	       }
+	    }
+	    System.out.println(result);
+	    cin.close();
+	}
+}
