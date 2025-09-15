@@ -1,0 +1,35 @@
+import java.util.Scanner;
+import java.util.HashSet;
+public class o005
+{  
+   public static int a(String str)
+   {
+	 HashSet<Character> letter   = new HashSet<Character>();
+	 for(int i=0;i<str.length();i++)
+	 {
+		letter.add(str.charAt(i));
+	 }
+	 return letter.size();
+   }
+   public static void main(String...args)
+   {
+	  Scanner cin  = new Scanner(System.in);
+	  int row = cin.nextInt();
+	  cin.nextLine();
+	  int mincount = Integer.MAX_VALUE;
+	  String result = "";
+	  for(int i=0;i<row;i++)
+	  {
+		 String data  = cin.nextLine();
+		 int count1 = a(data);
+		 if(count1<mincount||
+		    count1==mincount&&data.compareTo(result) < 0)
+		 {
+		   mincount  = count1;
+		   result = data;
+		 }
+	  }
+	  System.out.println(result);
+	  cin.close();
+   }
+}
