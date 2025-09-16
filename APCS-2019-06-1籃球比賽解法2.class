@@ -1,0 +1,70 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class o006
+{   
+	public static int e(String str)
+	{
+	   String number[] = str.split(" ");
+	   int sum = 0;
+	   for(String num:number)
+	   {
+		 if(!num.isEmpty())
+		 {
+			sum+=Integer.parseInt(num);
+		 }
+	   }
+	   return sum;
+	}
+	public static void main(String[] args)
+	{
+	   try(InputStreamReader cin = new InputStreamReader(System.in);
+		   BufferedReader br = new BufferedReader(cin))
+	   {
+		  String a = br.readLine();
+		  int sum = e(a);
+		  String b = br.readLine();
+		  int sum1 = e(b);
+		  String c = br.readLine();
+		  int sum2 = e(c);
+		  String d = br.readLine();
+		  int sum3 = e(d);
+		  System.out.println(sum + ":" + sum1);
+		  System.out.println(sum2 + ":" + sum3);
+		  int Home = 0, Any = 0;
+		  if(sum>sum1)
+		  {
+			Home++;  
+		  }
+		  else
+		  {
+			Any++;
+		  }
+		  if(sum2>sum3)
+		  {
+			  Home++;  
+		  }
+		  else
+		  {
+			Any++;
+		  }
+		  if(Home==2)
+		  {
+			 System.out.println("Win");
+		  }
+		  
+		  else if(Any==2)
+		  {
+			System.out.println("Lose");
+		  }
+		  else
+		  {
+			 System.out.println("Tie");
+		  }
+	   }
+	   catch (Exception e)
+	   {
+		 e.printStackTrace();
+	   }
+	}
+
+}
