@@ -1,0 +1,62 @@
+import java.util.Scanner;
+public class o06
+{   
+	public static int e(String str)
+	{
+	  String numeber[] = str.split(" ");
+	  int sum = 0;
+	   for(String num:numeber)
+	   {
+		 if(!num.isEmpty())
+		 {
+		   sum+=Integer.parseInt(num);
+		 }
+	   }
+	   return sum;
+	}
+	public static void main(String[] args)
+	{
+	   Scanner cin  = new Scanner(System.in);
+	   String a = cin.nextLine();
+	   int sum = e(a);
+	   String b = cin.nextLine();
+	   int sum1 = e(b);
+	   String c = cin.nextLine();
+	   int sum2 = e(c);
+	   String d = cin.nextLine();
+	   int sum3 = e(d);
+	   System.out.println(sum + ":" + sum1);
+	   System.out.println(sum2 + ":" + sum3);
+	   int Home = 0, Away = 0;
+       if(sum > sum1)
+       {
+         Home++;
+       }
+       else
+       {
+    	   Away++;  
+       }
+       if(sum2 > sum3)
+       {
+    	   Home++;
+       }
+       else
+       {
+    	   Away++;
+       }
+       if(Home == 2)
+       {
+    	   System.out.println("Win");
+       }
+       else if(Away == 2)
+       {
+    	   System.out.println("Lose");
+       }
+       else
+       {
+    	   System.out.println("Tie");
+       }
+	   cin.close();
+	}
+
+}
