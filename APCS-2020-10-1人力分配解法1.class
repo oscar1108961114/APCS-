@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class o09
+{
+	public static void main(String[] args)
+	{
+	   Scanner cin = new Scanner(System.in);
+	   String str[] = cin.nextLine().split(" ");
+	   int a = Integer.parseInt(str[0]);
+	   int b = Integer.parseInt(str[1]);
+	   int c = Integer.parseInt(str[2]);
+	   String str1[] = cin.nextLine().split(" ");
+	   int a1 = Integer.parseInt(str1[0]);
+	   int b1 = Integer.parseInt(str1[1]);
+	   int c1 = Integer.parseInt(str1[2]);
+	   int n = cin.nextInt();
+	   int  x1 , x2 = 0;
+	   int y1 = 0  , y2 = 0;
+	   int result = Integer.MIN_VALUE;
+	   for ( x1 = 0; x1 <= n; x1++)
+	   {
+		    x2 = n - x1;
+		    y1 = a * x1 * x1 + b *  x1 + c;
+		    y2 = a1* x2 * x2 + b1* x2 + c1;
+		    int total = y1 + y2;
+		    result = Math.max(result, total);
+	   }
+	   System.out.println(result);
+	   cin.close();
+	}
+}
