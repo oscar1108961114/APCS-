@@ -1,0 +1,29 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class o10
+{
+	public static void main(String[] args)
+	{
+	   Scanner cin = new Scanner(System.in);
+	   String str[] = cin.nextLine().split(" ");
+	   int n = Integer.parseInt(str[0]);
+	   int date = Integer.parseInt(str[1]);
+	   int result = 0;
+	   int count = 0;
+       for(int i=0;i<n;i++)
+       {
+    	   int price[] = Arrays.stream(cin.nextLine().split(" "))
+    			         .mapToInt(Integer::parseInt)
+    			         .toArray();
+    	   int maxPrice = Arrays.stream(price).max().getAsInt();
+           int minPrice = Arrays.stream(price).min().getAsInt();
+    	   if(maxPrice - minPrice >= date)
+    	   {
+    		  int average = (price[0] + price[1] + price[2]) / 3;
+    		  result+=average;
+    		  count++;
+    	   }
+       }
+       System.out.println(count + " " + result);
+	}
+}
