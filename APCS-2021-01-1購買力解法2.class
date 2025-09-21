@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+public class o010
+{
+	public static void main(String[] args)
+	{
+		try(InputStreamReader cin = new InputStreamReader(System.in);
+		    BufferedReader br = new BufferedReader(cin))
+		{
+		   String str[]  = br.readLine().split(" ");
+		   int n = Integer.parseInt(str[0]);
+		   int date = Integer.parseInt(str[1]);
+		   int count = 0;
+		   int result = 0;
+		   for(int i=0;i<n;i++)
+		   {
+			  int price[] = Arrays.stream(br.readLine().split(" "))
+					        .mapToInt(Integer::parseInt)
+					        .toArray();
+			  int max = Arrays.stream(price).max().getAsInt();
+			  int min = Arrays.stream(price).min().getAsInt();
+			  if(max - min >= date)
+			  {
+				 int average = (price[0] + price[1]  + price[2]) / 3;
+				 result+=average;
+				 count++;
+			  }			 
+		   }
+		   System.out.println(count + " " + result);
+		} 
+		catch (Exception e)
+		{
+		   e.printStackTrace();
+		}
+	}
+}
