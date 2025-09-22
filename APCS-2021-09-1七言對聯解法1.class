@@ -1,0 +1,48 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class o11
+{
+	public static void main(String[] args)
+	{
+	   Scanner cin = new Scanner(System.in);
+	   int n = cin.nextInt();
+	   cin.nextLine();
+	   String violations = "";
+	   String result[] = new String[n]; 
+	   for(int i=0;i<n;i++)
+	   {  
+		   violations = "";
+		  int up[] = Arrays.stream(cin.nextLine().split(" "))
+				     .mapToInt(Integer::parseInt)
+				     .toArray();
+		  int down[] = Arrays.stream(cin.nextLine().split(" "))
+				       .mapToInt(Integer::parseInt)
+				       .toArray();
+          if(!((up[1] != up[3] && up[1] == up[5]) && (down[1] !=down[3] && down[1] == down[5])))
+          {
+            violations+= "A";
+          }
+          if(!(up[6] ==1 && down[6] ==0))
+          {
+        	  violations+= "B"; 
+          }
+          if(!((up[1]!=down[1] && up[3] != down[3] && up[5] != down[5])))
+          {
+        	  violations +="C";
+          }
+          result[i] = violations;
+	   }
+	   for(int j=0;j<n;j++)
+	   {
+		   if(result[j].equals(""))
+	       {
+	     	 System.out.println("None");
+	       }
+	       else
+	       {
+				 System.out.println(result[j]);
+		   }
+	   }
+       cin.close();
+	}
+}
