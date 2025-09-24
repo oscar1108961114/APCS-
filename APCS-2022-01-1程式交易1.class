@@ -1,0 +1,41 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class o13
+{
+	public static void main(String[] args)
+	{
+	    Scanner cin = new Scanner(System.in);
+        int n = cin.nextInt();
+        int D = cin.nextInt();
+        cin.nextLine();
+        int a[] = Arrays.stream(cin.nextLine().split(" "))
+    		      .mapToInt(Integer::parseInt)
+    		      .toArray();
+        int x = a[0];
+        int result = 0;
+        boolean hold = true;
+        int lastsellprice = -1;
+       for(int i=1;i<n;i++)
+       {
+    	   if(hold)    	   
+    	   {
+    		   if(a[i] >= x+D)
+        	   {
+        		  result += (a[i] - x); 
+        		  hold = false;
+        		  lastsellprice = a[i];
+        	   } 
+    	   }
+    	   else
+    	   {
+    		   if(a[i] <= lastsellprice-D)
+        	   {
+        		  x = a[i];
+        		  hold = true;
+        	   }
+		   } 
+       }
+       System.out.println(result);
+       cin.close();
+	}
+}
