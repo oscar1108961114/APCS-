@@ -1,0 +1,50 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+public class o013
+{
+   public static void main(String...args)
+   {
+	   try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+	   {
+		  int str[] = Arrays.stream(br.readLine().split(" "))
+				      .mapToInt(Integer::parseInt)
+				      .toArray();
+		  int n = str[0];
+		  int D = str[1];
+          int a[] = Arrays.stream(br.readLine().split(" "))
+        		    .mapToInt(Integer::parseInt)
+        		    .toArray();
+          int x = a[0];
+          int lastsellprice = -1;
+          boolean hold = true;
+          int result = 0;
+          for(int i=1;i<n;i++)
+          {
+        	  if(hold)
+        	  {
+        		 if(a[i] >= x + D)
+        		 {
+        		   result += (a[i] - x);
+        		   hold = false;
+        		   lastsellprice = a[i];
+        		 }
+        	  }
+        	  else
+        	  {
+				 if(a[i] <= lastsellprice-D)
+				 {
+				    x = a[i];
+				    hold = true;
+				 }
+			  }
+          }
+		  System.out.println(result);
+	   }
+	   catch (Exception e) 
+	   {
+		  e.printStackTrace();
+	   }
+   }
+}
