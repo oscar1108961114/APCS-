@@ -1,0 +1,49 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
+public class o014
+{
+   public static void main(String...args)
+   {
+	   try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+	   {
+		  int number[] = Arrays.stream(br.readLine().split(" "))
+				         .mapToInt(Integer::parseInt)
+				         .toArray();
+		  int numbersort[] = Arrays.stream(number)
+				             .distinct()
+				             .boxed()
+				             .sorted(Comparator.reverseOrder())
+				             .mapToInt(Integer::intValue)
+				             .toArray();
+		  int count[] = new int[10];
+		  for(int numbers :number)
+		  {
+			 count[numbers]++;
+		  }
+		  int mode = 0;
+		  int maxnumber = 0;
+		  int result = 0;
+		  for(int i=0;i<count.length;i++)
+		  {
+			  if(count[i] > maxnumber)
+			  {
+				 maxnumber = count[i];
+				 mode = i;
+			  }
+			  result = maxnumber;
+		  }
+		  System.out.print(result + " ");
+		  for(int numberresult : numbersort)
+		  {
+			  System.out.print(numberresult + " ");
+		  }
+	   }
+	   catch (Exception e)
+	   {
+		  e.printStackTrace();
+	   }
+   }
+}
