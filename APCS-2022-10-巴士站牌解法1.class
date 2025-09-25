@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class o15
+{
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		int n = cin.nextInt();
+		if (n <= 1)
+		{
+	       return;
+	    }
+		int prevX = cin.nextInt();
+        int prevY = cin.nextInt();
+		int max = Integer.MIN_VALUE;
+		int min = Integer.MAX_VALUE;
+		for (int i = 1; i < n; i++)
+		{
+            int x = cin.nextInt();
+            int y = cin.nextInt();
+            int d = Math.abs(prevX - x) + Math.abs(prevY - y); // 相鄰兩站距離
+            if (d > max) max = d;
+            if (d < min) min = d;
+            prevX = x;
+            prevY = y;
+        }
+		System.out.println(max + " " + min);
+	}
+}
