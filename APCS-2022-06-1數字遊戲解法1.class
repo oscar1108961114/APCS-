@@ -1,0 +1,41 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Comparator;
+public class o14
+{
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		int number[] = Arrays.stream(cin.nextLine().split(" "))
+				       .mapToInt(Integer::parseInt)
+				       .toArray();
+		int  numbersort[] = Arrays.stream(number)
+				            .distinct()
+				            .boxed()//將int包裝成Integar
+				            .sorted(Comparator.reverseOrder())
+				            .mapToInt(Integer::intValue) //將Integar轉回int
+				            .toArray();
+		int count[] = new int[10];
+		for(int numbers : number)
+		{
+		   count[numbers]++;
+		}
+		int mode = 0;
+		int maxnumber = 0;
+		int result = 0;
+		for(int i=0;i<count.length;i++)
+		{
+		   if(count[i] > maxnumber)
+		   {
+			  maxnumber = count[i];
+			  mode = i;
+		   }
+		   result = maxnumber;
+		}
+		System.out.print(result + " " );
+		for(int resultnumber : numbersort)
+		{
+		  System.out.print(resultnumber + " ");
+		}
+	}
+}
