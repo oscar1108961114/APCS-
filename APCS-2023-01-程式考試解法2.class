@@ -1,0 +1,42 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class o016
+{
+	public static void main(String[] args)
+	{
+		try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+		{
+		   int k = Integer.parseInt(br.readLine());
+		   int simax = Integer.MIN_VALUE;
+		   int timax = Integer.MIN_VALUE;
+		   int result = 0;
+		   int count = 0;
+		   for(int i=0;i<k;i++)
+		   {
+			   String str[] = br.readLine().split(" ");
+			   int ti = Integer.parseInt(str[0]); //時間
+			   int si = Integer.parseInt(str[1]); //分數
+			   if(si > simax)
+			   {
+				  simax = si;
+				  timax = ti;
+			   }
+			   if(si == -1)
+			   {
+				  count++; 
+			   }
+		   }
+		   result = simax - k - count * 2;
+		   if(result < 0)
+		   {
+			   result = 0;
+		   }
+		   System.out.println(result + " " + timax);
+		}
+        catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
