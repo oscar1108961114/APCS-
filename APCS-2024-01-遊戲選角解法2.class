@@ -1,0 +1,48 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class o019
+{
+	public static void main(String...args)
+	{
+		try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+		{
+			int n = Integer.parseInt(br.readLine());
+			int max1 = Integer.MIN_VALUE;
+			int max2 = Integer.MIN_VALUE;
+			int ai1 = 0,di1 = 0;
+			int ai2 = 0,di2 = 0;
+			for(int i=0;i<n;i++)
+			{
+				String data[] = br.readLine().split(" ");
+				int ai = Integer.parseInt(data[0]);
+				int di = Integer.parseInt(data[1]);
+				int stats = ai*ai + di*di;
+				if(stats > max1)
+				{
+					max2 = max1;
+					ai2 = ai1;
+					di2 = di1;
+					max1 = stats;
+					ai1 = ai;
+					di1 = di;
+				}
+				else if(stats > max2)
+				{
+					max2 = stats;
+					ai2 = ai;
+					di2 = di;
+				}
+				else
+				{
+					continue;
+				}
+			}
+			System.out.println(ai2 + " " + di2);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
