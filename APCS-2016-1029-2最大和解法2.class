@@ -1,0 +1,51 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+public class o020
+{
+	public static void main(String[] args)
+	{
+		try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+		{
+			String str[] = br.readLine().split(" ");
+			int n = Integer.parseInt(str[0]);
+			int m = Integer.parseInt(str[1]);
+			int result = 0;
+			int count = 0;
+			int maxnumber[] = new int[n];
+			for(int i=0;i<n;i++)
+			{
+				int data[] = Arrays.stream(br.readLine().split(" "))
+						     .mapToInt(Integer::parseInt)
+						     .toArray();
+				int max = Arrays.stream(data).max().getAsInt();
+				maxnumber[i] = max;
+				result +=max;
+			}
+			System.out.println(result);
+			boolean first = true;
+			for(int i=0;i<n;i++)
+			{				
+				if(result % maxnumber[i] ==0)
+				{
+					if(!first)
+					{
+						System.out.print(" ");
+					}
+					System.out.print(maxnumber[i]);
+					first = false;
+					count++;
+				}			
+			}
+			if(count == 0)
+			{
+				System.out.println(-1);
+			}
+		}
+        catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
