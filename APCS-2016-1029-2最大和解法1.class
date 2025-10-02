@@ -1,0 +1,43 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class o20
+{
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		int n = cin.nextInt();
+		int m = cin.nextInt();
+		cin.nextLine();
+		int result = 0;
+		int maxnumber[] = new int[n];
+		int count = 0;
+		for(int i=0;i<n;i++)
+		{
+			int data[] = Arrays.stream(cin.nextLine().split(" "))
+					     .mapToInt(Integer::parseInt)
+					     .toArray();
+		    int max = Arrays.stream(data).max().getAsInt();
+		    maxnumber[i] = max;
+		    result += max;
+		}
+		System.out.println(result);
+		boolean first = true;
+		for(int i=0;i<n;i++)
+		{
+			if(result %  maxnumber[i] == 0)
+			{
+			   if(!first)
+			   {
+				   System.out.print(" ");
+			   }
+			   System.out.print(maxnumber[i]);
+			   first = false;
+			   count++;
+			}			
+		}
+		if(count==0)
+		{				
+			System.out.println(-1);
+		}
+	}
+}
