@@ -1,0 +1,74 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class o22
+{
+	public static String stringmove(String str , int distance)
+	{
+	     int n = str.length();
+	     distance = distance%n;//算出怎麼轉回原位
+	     if(distance <0)
+	     {
+		    distance+=n;
+	     }
+	     char c[] = new char[n];
+	     for(int i=0;i<n;i++)
+	     {
+		    int newpos = (i + distance) %n;
+		    //1.原位置 + 轉動距離 = 新位置(可能超出範圍)
+		    //2.% n = 取餘數,讓位置「繞圈」
+		    c[newpos] = str.charAt(i);//把這個字元放到結果陣列的newpos位置
+	     }
+	     return new String (c);
+	}
+	public static int countscroe(String str[] , int col)
+	{
+		int count[] = new int[26];
+		for(int i=0;i<str.length;i++)
+		{
+		   char c = str[i].charAt(col);
+		   count[c-'a']++;
+		}
+		int maxcount = 0;
+		for(int j=0;j<26;j++)
+		{
+			if(count[j] > maxcount)
+			{
+				maxcount = count[j];
+			}
+		}
+		return maxcount;
+	}
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		int m = cin.nextInt();
+		int n = cin.nextInt();
+		int k = cin.nextInt();
+		cin.nextLine();
+		String str[] = new String[m];
+		int totalscroe = 0;
+		for(int i=0;i<m;i++)
+		{
+			str[i] = cin.nextLine();
+		}
+		for(int j=0;j<k;j++)
+		{
+			int a[]  = Arrays.stream(cin.nextLine().split(" "))
+					   .mapToInt(Integer::parseInt)
+					   .toArray();			
+		    for(int i=0;i<m;i++)
+		    {
+		    	str[i] = stringmove(str[i], a[i]);
+		    }
+		    int roundscroe = 0;
+			for(int col = 0;col<n;col++)
+			{
+				int maxcount = countscroe(str, col);
+				roundscroe+=maxcount;
+			}
+			totalscroe+=roundscroe;
+		}
+		System.out.println(totalscroe);
+		cin.close();
+	}
+}
