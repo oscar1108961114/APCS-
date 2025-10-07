@@ -1,0 +1,79 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+public class o022
+{
+	public static String stringmove(String str , int distance)
+	{
+		int n = str.length();
+		distance = distance%n;
+		if(distance < 0)
+		{
+			distance+=n;
+		}
+	    char c[] = new char[n];
+	    for(int i=0;i<n;i++)
+	    {
+	    	int newpos = (i + distance) %n;
+	    	c[newpos] = str.charAt(i);
+	    }
+	    return new String(c);
+	}
+	public static int countscroe(String str[] , int col)
+	{
+		int count[] = new int[26];
+		for(int i=0;i<str.length;i++)
+		{
+			 char c = str[i].charAt(col);
+			 count[c-'a']++;
+		}
+		int maxcount = 0;
+		for(int j=0;j<26;j++)
+		{
+			if(count[j] > maxcount)
+			{
+				maxcount = count[j];
+			}
+		}
+		return maxcount;
+	}
+	public static void main(String[] args)
+	{
+		try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+		{
+			String[] firstline = br.readLine().split(" ");
+            int m = Integer.parseInt(firstline[0]);
+            int n = Integer.parseInt(firstline[1]);
+            int k = Integer.parseInt(firstline[2]);
+			String str[] = new String[m];
+			int totalscroe = 0;
+			for(int i=0;i<m;i++)
+			{
+				str[i] = br.readLine();
+			}
+			for(int j=0;j<k;j++)
+			{
+				int a[] = Arrays.stream(br.readLine().split(" "))
+						  .mapToInt(Integer::parseInt)
+						  .toArray();
+				for(int i=0;i<m;i++)
+				{
+					str[i] = stringmove(str[i], a[i]);
+				}
+				int roundscroe = 0;
+				for(int col = 0;col<n;col++)
+				{
+					int maxcount = countscroe(str, col);
+					roundscroe+=maxcount;
+				}
+				totalscroe+=roundscroe;
+			}
+			System.out.println(totalscroe);
+		}
+        catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
