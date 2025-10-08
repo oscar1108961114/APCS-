@@ -1,0 +1,69 @@
+import java.util.Scanner;
+public class o23
+{
+    public static String twochange(String str)
+    {
+    	char c[] = str.toCharArray();
+    	for(int i=0;i<c.length-1;i+=2)
+    	{
+    		char temp = c[i];
+    		c[i] = c[i+1];
+    	    c[i+1] = temp;
+    	}
+    	return new String(c);
+    }
+    public static String twosort(String str)
+    {
+        char c[] = str.toCharArray();
+    	for(int i=0;i<c.length - 1;i+=2)
+    	{
+    		 if(c[i] > c[i+1])
+    		 {
+    	        char temp = c[i];
+    	        c[i] = c[i+1];
+    	        c[i+1] = temp;
+    	     }
+    	}   	
+    	return new String(c);
+    }
+    public static String perfectrearrangement(String str)
+    {
+    	int m = str.length()/2;
+    	String str1 = str.substring(0,m);
+    	String str2 = str.substring(m , str.length());
+    	StringBuilder result = new StringBuilder();
+    	for(int i=0;i<m;i++)
+    	{
+    		result.append(str1.charAt(i));
+    		result.append(str2.charAt(i));    	   
+    	}
+    	return result.toString();
+    }
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		String str = cin.nextLine();	
+        int number = cin.nextInt();
+        for(int i=0;i<number;i++)
+        {
+        	int n = cin.nextInt();
+        	if(n ==0)
+        	{
+        	   str = twochange(str);
+        	}
+        	else if(n == 1)
+        	{
+        		str = twosort(str);
+        	}
+        	else if(n ==2)
+        	{
+        		str = perfectrearrangement(str);
+        	}
+        	else
+        	{
+			   continue;
+			}
+        }
+        System.out.println(str);
+	}
+}
