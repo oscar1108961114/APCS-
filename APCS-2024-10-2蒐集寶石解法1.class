@@ -1,0 +1,67 @@
+import java.util.Scanner;
+public class o24
+{
+    
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		int m = cin.nextInt();
+	    int n = cin.nextInt();
+	    int k = cin.nextInt();
+	    int r = cin.nextInt();
+	    int c = cin.nextInt();
+	    int map[][] = new int[m][n];
+	    for(int i=0;i<m;i++)
+	    {
+	    	for(int j=0;j<n;j++)
+	    	{
+	    		map[i][j] = cin.nextInt();
+	    	}
+	    }
+	    cin.close();
+	    int gemscollect = 0;//寶石收集
+	    int score = 0;//分數
+	    int currentrow = r;//當前行
+        int currentcol = c;//當前列
+        int direction = 0; //預設:0=右,1=下,2=左,3=上
+        int[] dr = {0, 1, 0, -1};
+        int[] dc = {1, 0, -1, 0};
+        while(true)
+        {
+        	if(currentrow < 0|| currentrow >=m || currentcol < 0 || currentcol >= n) //若起點非法就終止
+        	{
+        		break;
+        	}
+        	if(map[currentrow][currentcol] ==0)//規則 1：如果這格是0就停止
+        	{
+        		break;
+        	}
+        	score+=map[currentrow][currentcol];//規則 2：收集寶石
+        	map[currentrow][currentcol]--;
+        	gemscollect++;
+        	if(k!=0&& score%k==0)//規則 3：如果 score 為 k 的倍數，向右轉（注意 k != 0）
+        	{
+        		direction = (direction + 1) % 4;//+1是向右轉；取餘數是限制在0~3之間不超過
+        	}
+        	boolean move = false;
+        	for(int i=0;i<4;i++)
+        	{
+        		int nr = currentrow + dr[direction];
+        		int nc = currentcol + dc[direction];
+        		if(nr >=0 && nr<m && nc>=0 && nc<n && map[nr][nc] != -1)//規則 4：嘗試往當前方向走，若撞牆或出界就順時鐘向右轉找可走的方向
+        		{
+        			 currentrow = nr;
+                     currentcol = nc;
+                     move = true;
+                     break;
+        		}
+        		direction = (direction + 1) % 4;       		
+        	}
+        	if (!move)
+    		{
+    		  break;
+    		}
+        }
+        System.out.println(gemscollect);
+	}
+}
