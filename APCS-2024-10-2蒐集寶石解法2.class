@@ -1,0 +1,76 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class o024
+{
+    public static void main(String[] args)
+    {
+        try(InputStreamReader cin = new InputStreamReader(System.in);
+        	BufferedReader br = new BufferedReader(cin))
+        {
+        	String str[] = br.readLine().split(" ");
+        	int m = Integer.parseInt(str[0]);
+        	int n = Integer.parseInt(str[1]);
+        	int k = Integer.parseInt(str[2]);
+        	int r = Integer.parseInt(str[3]);
+        	int c = Integer.parseInt(str[4]);
+        	int map[][] = new int[m][n];
+        	for(int i=0;i<m;i++)
+        	{   
+        		String number[] = br.readLine().split(" ");
+        		for(int j=0;j<n;j++)
+        		{       			
+        			map[i][j] = Integer.parseInt(number[j]);
+        		}
+        	}
+        	int gemscollect = 0;//寶石收集
+    	    int score = 0;//分數
+    	    int currentrow = r;//當前行
+            int currentcol = c;//當前列
+            int direction = 0; //預設:0=右,1=下,2=左,3=上
+            int[] dr = {0, 1, 0, -1};
+            int[] dc = {1, 0, -1, 0};
+            while(true)
+            {
+            	if(currentrow < 0 || currentrow >=m || currentcol < 0 || currentcol>=n)//若起點非法就終止
+            	{
+            		break;
+            	}
+            	
+            	if(map[currentrow][currentcol] == 0) //規則1:如果這格是0就停止
+            	{
+            		break;
+            	}
+            	score+=map[currentrow][currentcol];
+            	map[currentrow][currentcol]--;
+            	gemscollect++;
+            	if(k!=0 && score%k==0) //規則 3：如果 score 為 k 的倍數，向右轉（注意 k != 0）
+            	{
+            		direction = (direction + 1) %4;//+1是向右轉；取餘數是限制在0~3之間不超過
+            	}
+            	boolean move = false;
+            	for(int i=0;i<4;i++)
+            	{
+            		int nr = currentrow + dr[direction];
+            		int nc = currentcol + dc[direction];
+            		if(nr >=0 && nr < m && nc >= 0 && nc <n && map[nr][nc] != -1)
+            		{
+            			currentrow = nr;
+            			currentcol = nc;
+            			move = true;
+            			break;
+            		}
+            		direction = (direction + 1) % 4;
+            	}
+            	if(!move)
+            	{
+            		break;
+            	}
+            }
+            System.out.println(gemscollect);
+        }
+        catch (Exception e)
+        {
+			e.printStackTrace();
+		}
+    }
+}
