@@ -1,0 +1,49 @@
+import java.util.Scanner;
+public class o25
+{
+	public static void paint(int map[][] , int r,int c,int t,int x)
+	{
+		int h = map.length;
+		int w = map[0].length;
+		for(int i=0;i<h;i++)
+		{
+			for(int j=0;j<w;j++)
+			{
+				int distance = Math.abs(r - i) + Math.abs(c - j);//計算曼哈頓距離
+				if(distance <=t)
+				{
+					map[i][j] += x;//累加顏色值
+				}
+			}
+		}
+	}
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		int h = cin.nextInt();
+		int w = cin.nextInt();
+		int n = cin.nextInt();
+        int map[][] = new int[h][w];
+        for(int i=0;i<n;i++)
+        {        	
+        	   int r = cin.nextInt();
+        	   int c = cin.nextInt();
+        	   int t = cin.nextInt();
+        	   int x = cin.nextInt();
+        	   paint(map, r, c, t, x);
+        }
+        cin.close();
+        for(int i=0;i<h;i++)
+        {
+        	for(int j=0;j<w;j++)
+        	{
+        		System.out.print(map[i][j]);
+        		if(j < w-1)
+        		{
+        			System.out.print(" ");
+        		}
+        	}
+        	System.out.println();
+        }
+	}
+}
