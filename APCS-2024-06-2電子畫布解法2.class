@@ -1,0 +1,58 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class o025
+{
+    public static void paint(int map[][] , int r , int c , int t, int x)
+    {
+    	int h = map.length;
+    	int w = map[0].length;
+    	for(int i=0;i<h;i++)
+    	{
+    		for(int j=0;j<w;j++)
+    		{
+    			int distance = Math.abs(r-i) + Math.abs(c - j);//計算曼哈頓距離
+    			if(distance <= t)   			
+    			{
+    				map[i][j]+=x;//累加顏色值
+    			}
+    		}
+    	}
+    }
+	public static void main(String[] args)
+	{
+		try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+		{
+			String data[] = br.readLine().split(" ");
+			int h = Integer.parseInt(data[0]);
+			int w = Integer.parseInt(data[1]);
+			int n = Integer.parseInt(data[2]);
+			int map[][] = new int[h][w];
+			for(int i=0;i<n;i++)
+			{
+				String operation[] = br.readLine().split(" ");
+				int r = Integer.parseInt(operation[0]);
+				int c = Integer.parseInt(operation[1]);
+				int t = Integer.parseInt(operation[2]);
+				int x = Integer.parseInt(operation[3]);
+			    paint(map, r, c, t, x);
+			}
+			for(int i=0;i<h;i++)
+			{
+				for(int j=0;j<w;j++)
+				{
+					System.out.print(map[i][j]);
+					if(j < w-1)
+					{
+						System.out.print(" ");
+					}
+				}
+				System.out.println();
+			}
+		}
+        catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
