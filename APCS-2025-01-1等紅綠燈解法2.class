@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+public class o031
+{
+	public static void main(String[] args)
+	{
+		try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+		{
+		   String lightcolor[] = br.readLine().split(" ");
+		   int a = Integer.parseInt(lightcolor[0]) , b = Integer.parseInt(lightcolor[1]);
+		   int n = Integer.parseInt(br.readLine());
+		   int number[] = Arrays.stream(br.readLine().split(" "))
+				          .mapToInt(Integer::parseInt)
+				          .toArray();
+		   int total = a+b , result = 0;
+		   for(int i=0;i<number.length;i++)
+		   {
+			   int p = number[i] % total;
+			   if(p < a)
+			   {
+				   continue;
+			   }
+			   else if(p > a)
+			   {
+				   result+=(total - p);
+			   }
+			   else if (p == a)
+			   {
+				   result+=b;
+			   }
+		   }
+		   System.out.println(result);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
