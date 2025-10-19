@@ -1,0 +1,40 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class o030
+{
+	public static void main(String[] args)
+	{
+		try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+		{
+			String number = br.readLine();
+			String data[] = br.readLine().split(" ");
+			String data1[] = br.readLine().split(" ");
+			int k = Integer.parseInt(number);
+			int x1 = Integer.parseInt(data[0]) , y1 = Integer.parseInt(data[1]);
+			int x2 = Integer.parseInt(data1[0]) , y2 = Integer.parseInt(data1[1]);
+			int p = 0 , v = k;
+			while(v > 0)
+			{
+				p+=v;
+				if(p % x1==0 && p % x2 ==0)
+				{
+					v-=(y1 + y2);
+				}
+				else if(p % x1 ==0)
+				{
+					v-=y1;
+				}
+				else if(p % x2 ==0)
+				{
+					v-=y2;
+				}
+			}
+			System.out.println(p);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
