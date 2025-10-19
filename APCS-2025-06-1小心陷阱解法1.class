@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class o30
+{
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		int k = cin.nextInt();
+		int x1 = cin.nextInt() , y1 = cin.nextInt();
+		int x2 = cin.nextInt() , y2 = cin.nextInt();
+		cin.close();
+        int p = 0 , v = k;
+        while(v > 0)
+        {
+        	p+=v;
+        	if(p % x1 ==0 && p % x2 ==0)
+        	{
+        		v-=(y1 + y2);
+        	}        	
+        	else if(p % x1 == 0)
+        	{
+        		v-=y1;
+        	}
+        	else if(p % x2 ==0)
+        	{
+				v-=y2;
+			}
+        }   
+    	System.out.println(p);
+	}
+}
