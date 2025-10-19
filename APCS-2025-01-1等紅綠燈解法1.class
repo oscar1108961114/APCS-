@@ -1,0 +1,34 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class o31
+{
+	public static void main(String[] args)
+	{
+		Scanner cin = new Scanner(System.in);
+		int a = cin.nextInt() , b = cin.nextInt();  //a:綠燈；b:紅燈
+		int n = cin.nextInt();
+		cin.nextLine();
+		int number[] = Arrays.stream(cin.nextLine().split(" "))
+					       .mapToInt(Integer::parseInt)
+					       .toArray();
+		cin.close();
+		int total = a + b , result = 0;
+		for(int i=0;i<number.length;i++)
+		{
+			int p = number[i] % total;
+			if(p < a)
+			{
+				continue;				
+			}
+			else if(p > a)
+			{
+				result+= (total - p);
+			}
+			else if(p == a)
+			{
+				result+=b;
+			}
+		}
+        System.out.println(result);
+	}
+}
