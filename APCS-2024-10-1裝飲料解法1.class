@@ -1,0 +1,41 @@
+import java.util.Scanner;
+public class o33
+{   
+	public static void main(String[] args)
+	{
+		 Scanner cin = new Scanner(System.in);	     	     
+	     int n = cin.nextInt();
+	     int w1 = cin.nextInt() , w2 = cin.nextInt();
+	     int h1 = cin.nextInt() , h2 = cin.nextInt();
+	     double currentheight = 0;
+	     double maxincrease = 0;
+	     for(int i=0;i<n;i++)
+	     {
+	    	 int v = cin.nextInt();
+	    	 double increase;
+	    	 if(currentheight < h1) //水位在下層
+	    	 {
+	    		 increase = (double) v / (w1 * w1);
+	    		 if(currentheight + increase > h1) //分段計算：一部分在下層，一部分在上層
+	    		 {
+	    			 double remainheight = h1 - currentheight; //計算下層的剩下高度
+	    			 double downwater_volume_lower_limit = remainheight * w1 * w1; //下層剩餘水量下限
+	    			 double water_volume_limit = v - downwater_volume_lower_limit; //進入上層的水量
+	    			 double increase_limit = water_volume_limit / (w2 * w2);
+	    			 increase = remainheight + increase_limit; //水量總上升量
+	    		 }
+	    	 }
+	    	 else //水位在上層
+	    	 {
+				increase = (double) v/(w2 * w2);
+			 }
+	    	 if(currentheight + increase > h1 + h2) //如果上升高度超過總高度
+	    	 {
+	                increase = h1 + h2 - currentheight;//實際上升高度 = 總高度 - 目前的水位高度
+	         }
+	    	 currentheight+=increase;
+	    	 maxincrease = Math.max(maxincrease, increase);
+	     }
+	     System.out.println((int)Math.round(maxincrease));//Math.round():四捨五入
+	}
+}
