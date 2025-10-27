@@ -1,0 +1,52 @@
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+public class o033
+{
+
+	public static void main(String[] args)
+	{
+		try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+		{
+			int n = Integer.parseInt(br.readLine());
+			String data[] = br.readLine().split(" ");
+			int w1 = Integer.parseInt(data[0]) , w2 = Integer.parseInt(data[1]);
+			int h1 = Integer.parseInt(data[2]) , h2 = Integer.parseInt(data[3]);
+			double currentheight = 0;
+			double maxincrease = 0;
+			String temp[] = br.readLine().split(" ");
+			for(int i=0;i<n;i++)
+			{
+				int v = Integer.parseInt(temp[i]);
+				double increase;
+				if(currentheight < h1) //水位在下層
+				{
+					increase = v/(w1 * w1);
+					if(currentheight + increase > h1)
+					{
+						double remainheight = h1 - currentheight;//計算下層的剩下高度
+						double downwater_volume_lower_limit = remainheight * w1 * w1;//下層剩餘水量下限
+						double water_volume_limit = v - downwater_volume_lower_limit;//進入上層的水量
+						double increase_limit = water_volume_limit / (w2 * w2);
+						increase = remainheight + increase_limit;
+					}
+				}
+				else //水位在上層
+				{
+					increase = v / (w2 * w2);
+				}
+				if(currentheight + increase > h1 + h2) //如果加入水量超過總高度
+				{
+					increase = h1 + h2 - currentheight;
+				}
+				currentheight+=increase;
+				maxincrease = Math.max(maxincrease, increase);
+			}
+			System.out.println((int)Math.round(maxincrease));	
+		}
+        catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
