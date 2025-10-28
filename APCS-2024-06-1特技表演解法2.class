@@ -1,0 +1,42 @@
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+public class o034
+{
+	public static void main(String[] args)
+	{
+		try(InputStreamReader cin = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(cin))
+		{
+			String temp = br.readLine();
+			int n = Integer.parseInt(temp);
+			int number[] = new int[n];
+			String numbertemp[] = br.readLine().split(" ");
+			for(int i=0;i<n;i++)
+			{
+				number[i] = Integer.parseInt(numbertemp[i]);
+			}
+			int dp[] = new int[n];
+			for(int i=0;i<n;i++)
+			{
+				dp[i] = 1;
+			}
+			for(int i=1;i<n;i++)
+			{
+				if(number[i-1] > number[i])
+				{
+					dp[i] = dp[i-1] + 1;
+				}
+			}
+			int maxlength = 0;
+			for(int i=0;i<n;i++)
+			{
+				maxlength = Math.max(maxlength, dp[i]);
+			}
+			System.out.println(maxlength);
+		}
+        catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
